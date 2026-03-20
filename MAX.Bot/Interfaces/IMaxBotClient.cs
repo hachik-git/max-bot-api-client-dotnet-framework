@@ -50,6 +50,23 @@ public interface IMaxBotClient
     Task<Message> GetMessageByIdAsync(string messageId, CancellationToken cancellationToken = default);
 
     /// <summary>
+    /// Отредактировать(изменить) сообщение по идентификатору
+    /// </summary>
+    /// <param name="messageId">Идентификатор редактируемого сообщения</param>
+    /// <param name="messageRequest">Новое сообщение</param>
+    /// <param name="cancellationToken">Токен отмены операции</param>
+    /// <returns>Сообщение</returns>
+    Task<BaseResponse> EditMessageByIdAsync(string messageId, SendMessageRequest messageRequest, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Удалить сообщение по идентификатору
+    /// </summary>
+    /// <param name="messageId">Идентификатор сообщения</param>
+    /// <param name="cancellationToken">Токен отмены операции</param>
+    /// <returns>Сообщение</returns>
+    Task<BaseResponse> DeleteMessageByIdAsync(string messageId, CancellationToken cancellationToken = default);
+
+    /// <summary>
     /// Получить список чатов
     /// </summary>
     /// <param name="request">Запрос на получение чатов</param>

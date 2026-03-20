@@ -1,5 +1,4 @@
-﻿using System.Net.Mail;
-using MAX.Bot.Extensions;
+﻿using MAX.Bot.Extensions;
 using MAX.Bot.Interfaces;
 using MAX.Bot.Interfaces.Models.Request;
 using MAX.Bot.Interfaces.Models.Request.Message;
@@ -88,6 +87,25 @@ try
         ChatId = C_TEST_CHAT_ID,
     });
     Console.WriteLine($"Получено {response?.Messages?.Length} сообщений:");
+
+    if (response?.Messages?.Length > 0)
+    {
+        Console.WriteLine("Вызываем GetMessageByIdAsync...");
+        var responseById = await maxApiClient.GetMessageByIdAsync(response?.Messages?.Last().Body.Mid);
+        Console.WriteLine($"Получено {responseById?.Body.Text}:");
+
+        Console.WriteLine("Вызываем EditMessageByIdAsync...");
+        var responseEdit = await maxApiClient.EditMessageByIdAsync(response?.Messages?.Last().Body.Mid, new SendMessageRequest()
+        {
+            Text = "Изменил ТЕКСТ !!!",
+            Format = MessageFormat.Markdown,
+        });
+        Console.WriteLine($"Изменено {responseEdit?.Success}:");
+
+        Console.WriteLine("Вызываем DeleteMessageByIdAsync...");
+        var responseDelete = await maxApiClient.DeleteMessageByIdAsync(response?.Messages?.First().Body.Mid);
+        Console.WriteLine($"Удалено {responseDelete?.Success}:");
+    }
 
     Console.WriteLine("Вызываем GetChatsAsync...");
     var responseChats = await maxApiClient.GetChatsAsync(new GetChatsRequest()

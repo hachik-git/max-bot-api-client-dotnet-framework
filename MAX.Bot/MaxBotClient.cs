@@ -132,6 +132,16 @@ public class MaxBotClient : IMaxBotClient
         return await SendRequestAsync<Message>(HttpMethod.Get, $"/messages/{messageId}", null, cancellationToken);
     }
 
+    public async Task<BaseResponse> EditMessageByIdAsync(string messageId, SendMessageRequest messageRequest, CancellationToken cancellationToken = default)
+    {
+        return await SendRequestAsync<BaseResponse>(HttpMethod.Put, $"/messages?message_id={messageId}", messageRequest, cancellationToken);
+    }
+
+    public async Task<BaseResponse> DeleteMessageByIdAsync(string messageId, CancellationToken cancellationToken = default)
+    {
+        return await SendRequestAsync<BaseResponse>(HttpMethod.Delete, $"/messages?message_id={messageId}", null, cancellationToken);
+    }
+
     public async Task<GetChatsResponse> GetChatsAsync(GetChatsRequest request, CancellationToken cancellationToken = default)
     {
         var queryParams = new Dictionary<string, string>();
