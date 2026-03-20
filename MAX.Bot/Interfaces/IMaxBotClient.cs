@@ -1,5 +1,6 @@
 ﻿using MAX.Bot.Interfaces.Models;
 using MAX.Bot.Interfaces.Models.Request;
+using MAX.Bot.Interfaces.Models.Request.Message;
 using MAX.Bot.Interfaces.Models.Response;
 
 namespace MAX.Bot.Interfaces;

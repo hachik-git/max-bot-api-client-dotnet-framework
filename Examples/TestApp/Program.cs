@@ -1,11 +1,18 @@
-﻿using MAX.Bot.Extensions;
+﻿using System.Net.Mail;
+using MAX.Bot.Extensions;
 using MAX.Bot.Interfaces;
-//using MAX.Bot.Interfaces.Models;
 using MAX.Bot.Interfaces.Models.Request;
+using MAX.Bot.Interfaces.Models.Request.Message;
+using MAX.Bot.Interfaces.Models.Request.Message.Attachment;
 using Microsoft.Extensions.DependencyInjection;
+using Attachment = MAX.Bot.Interfaces.Models.Request.Message.Attachment.Attachment;
+
+const string C_BOT_API = "YOUR_BOT_TOKEN";
+const long C_TEST_CHAT_ID = -70581633278133;
+const long C_TEST_USER_ID = 168973682;
 
 var services = new ServiceCollection();
-services.AddMaxBotClient("YOUR_BOT_TOKEN", 30);
+services.AddMaxBotClient(C_BOT_API, 30);
 
 try
 {
@@ -19,15 +26,66 @@ try
     Console.WriteLine("Вызываем SendMessageAsync...");
     await maxApiClient.SendMessageAsync(new SendMessageRequest()
     {
-        ChatId = -70581633278133,
+        ChatId = C_TEST_CHAT_ID,
         Text = "Отправка сообщения",
         Format = MessageFormat.Markdown,
+    });
+
+    Console.WriteLine("Вызываем SendMessageAsync-Attachment-InlineKeyboardPayload...");
+    await maxApiClient.SendMessageAsync(new SendMessageRequest()
+    {
+        ChatId = C_TEST_CHAT_ID,
+        Text = "Отправка сообщения с клавиатурой",
+        Format = MessageFormat.Markdown,
+        Attachments = new List<Attachment>
+        {
+            new InlineKeyboardAttachment
+            {
+                Payload = new InlineKeyboardPayload()
+                {
+                    Buttons = new List<List<Button>>()
+                    {
+                        // --- Ряд 1: Две кнопки ---
+                        new List<Button>
+                        {
+                            new LinkButton
+                            {
+                                Text = "Открыть сайт",
+                                Url = "https://saasoft.ru"
+                            },
+                            new CallbackButton
+                            {
+                                Text = "Подтвердить",
+                                Payload = "confirm_action"
+                            }
+                        },
+                        // --- Ряд 2: Одна большая кнопка ---
+                        new List<Button>
+                        {
+                            new RequestGeoButton
+                            {
+                                Text = "Отправить геолокацию",
+                                Quick = true
+                            }
+                        },
+                        // --- Ряд 3: Одна большая кнопка ---
+                        new List<Button>
+                        {
+                            new MessageButton()
+                            {
+                                Text = "Отправить текст",
+                            }
+                        }
+                    }
+                }
+            }
+        }
     });
 
     Console.WriteLine("Вызываем GetMessagesAsync...");
     var response = await maxApiClient.GetMessagesAsync(new GetMessagesRequest()
     {
-        ChatId = -70581633278133,
+        ChatId = C_TEST_CHAT_ID,
     });
     Console.WriteLine($"Получено {response?.Messages?.Length} сообщений:");
 
@@ -42,15 +100,15 @@ try
     Console.WriteLine("Вызываем GetChatMembersAsync...");
     var responseChatMembers = await maxApiClient.GetChatMembersAsync(new GetChatMembersRequest()
     {
-        ChatId = -70581633278133,
+        ChatId = C_TEST_CHAT_ID,
     });
     Console.WriteLine($"Получено {responseChatMembers?.Members?.Length} пользователей:");
 
     Console.WriteLine("Вызываем AddChatMemberAsync...");
     var isAdded = await maxApiClient.AddChatMemberAsync(new AddChatMemberRequest()
     {
-        ChatId = -70581633278133,
-        UserIds = [168973682],
+        ChatId = C_TEST_CHAT_ID,
+        UserIds = [C_TEST_USER_ID],
     });
 
     if (isAdded != null && isAdded.Success)
@@ -61,8 +119,8 @@ try
     Console.WriteLine("Вызываем DeleteChatMemberAsync...");
     var isDeleted = await maxApiClient.DeleteChatMemberAsync(new DeleteChatMemberRequest()
     {
-        ChatId = -70581633278133,
-        UserId = 168973682,
+        ChatId = C_TEST_CHAT_ID,
+        UserId = C_TEST_USER_ID,
     });
 
     if (isDeleted != null && isDeleted.Success)

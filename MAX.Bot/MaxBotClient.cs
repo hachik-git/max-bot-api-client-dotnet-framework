@@ -5,6 +5,7 @@ using MAX.Bot.Exceptions;
 using MAX.Bot.Interfaces;
 using MAX.Bot.Interfaces.Models;
 using MAX.Bot.Interfaces.Models.Request;
+using MAX.Bot.Interfaces.Models.Request.Message;
 using MAX.Bot.Interfaces.Models.Response;
 
 namespace MAX.Bot;
@@ -51,6 +52,7 @@ public class MaxBotClient : IMaxBotClient
         {
             var json = JsonSerializer.Serialize(data, new JsonSerializerOptions
             {
+                PropertyNameCaseInsensitive = true,
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
             });
