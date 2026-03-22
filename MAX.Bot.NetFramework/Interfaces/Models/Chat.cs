@@ -11,7 +11,7 @@ namespace MAX.Bot.Interfaces.Models
         /// <summary>
         /// ID чата
         /// </summary>
-        [JsonProperty( "chat_id")]
+        [JsonProperty("chat_id")]
         public long ChatId { get; set; }
 
         /// <summary>

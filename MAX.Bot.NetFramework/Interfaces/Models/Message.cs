@@ -18,7 +18,7 @@ namespace MAX.Bot.Interfaces.Models
         /// </summary>
         [JsonProperty("timestamp")]
         public long Timestamp { get; set; }
-        
+
         /// <summary>
         /// Содержимое сообщения. Текст + вложения. Может быть null, 
         /// если сообщение содержит только пересланное сообщение

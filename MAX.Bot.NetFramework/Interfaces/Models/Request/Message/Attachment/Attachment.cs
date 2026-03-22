@@ -11,7 +11,7 @@ namespace MAX.Bot.Interfaces.Models.Request.Message.Attachment
         public AttachmentPayload Payload { get; set; }
     }
 
-    public abstract class AttachmentPayload 
+    public abstract class AttachmentPayload
     {
         [JsonProperty("type")]
         public abstract string Type { get; }

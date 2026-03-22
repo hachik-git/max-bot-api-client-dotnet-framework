@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 /// <summary>
 /// Это информация, которую вы получите, как только аудио/видео будет загружено
 /// </summary>
-public sealed class FilePayload: AttachmentPayload
+public sealed class FilePayload : AttachmentPayload
 {
     public override string Type => "file";
 

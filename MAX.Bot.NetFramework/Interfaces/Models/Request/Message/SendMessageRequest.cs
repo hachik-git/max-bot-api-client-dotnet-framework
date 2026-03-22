@@ -1,6 +1,6 @@
+using MAX.Bot.Interfaces.Models.Request.Message.Link;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using MAX.Bot.Interfaces.Models.Request.Message.Link;
 
 namespace MAX.Bot.Interfaces.Models.Request.Message
 {
