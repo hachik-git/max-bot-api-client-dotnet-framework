@@ -22,7 +22,7 @@ dotnet add package MAX.Bot.NetFramework
 
 ### Через PackageReference
 ```xml
-<PackageReference Include="MAX.Bot.NetFramework" Version="1.0.0.0" />
+<PackageReference Include="MAX.Bot.NetFramework" Version="1.0.2.0" />
 ```
 
 ## Быстрый старт
