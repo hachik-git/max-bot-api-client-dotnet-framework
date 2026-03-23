@@ -16,4 +16,6 @@ namespace MAX.Bot.Interfaces.Models.Request.Message.Attachment
         [JsonProperty("type")]
         public abstract string Type { get; }
     }
+
+    public interface IMediaPayload { };
 }

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 /// <summary>
 /// Запрос на прикрепление изображения (все поля являются взаимоисключающими)
 /// </summary>
-public sealed class ImagePayload : AttachmentPayload
+public sealed class ImagePayload : AttachmentPayload, IMediaPayload
 {
     public override string Type => "image";
 

@@ -1,6 +1,7 @@
 using MAX.Bot.Interfaces.Models;
 using MAX.Bot.Interfaces.Models.Request;
 using MAX.Bot.Interfaces.Models.Request.Message;
+using MAX.Bot.Interfaces.Models.Request.Message.Attachment;
 using MAX.Bot.Interfaces.Models.Response;
 using System;
 using System.Collections.Generic;
@@ -102,6 +103,15 @@ namespace MAX.Bot.Interfaces
         /// <param name="cancellationToken">Токен отмены операции</param>
         /// <returns>Базовый ответ операции</returns>
         Task<BaseResponse> AddChatMemberAsync(AddChatMemberRequest request, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Создание медиа-аттачмента
+        /// </summary>
+        /// <param name="file">Содержимое файла</param>
+        /// <param name="fileName">Имя файла</param>
+        /// <param name="cancellationToken">Токен отмены операции</param>
+        /// <returns>Асинхронная задача</returns>
+        Task<T> CreateMediaAttachmentAsync<T>(byte[] file, string fileName, CancellationToken cancellationToken = default) where T : AttachmentPayload, IMediaPayload;
 
         /// <summary>
         /// Долгосрочный опрос обновлений с обработкой через callback-функцию

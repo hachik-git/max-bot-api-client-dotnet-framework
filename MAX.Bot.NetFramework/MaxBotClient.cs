@@ -3,13 +3,17 @@ using MAX.Bot.Interfaces;
 using MAX.Bot.Interfaces.Models;
 using MAX.Bot.Interfaces.Models.Request;
 using MAX.Bot.Interfaces.Models.Request.Message;
+using MAX.Bot.Interfaces.Models.Request.Message.Attachment;
 using MAX.Bot.Interfaces.Models.Response;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,7 +35,9 @@ namespace MAX.Bot
             _httpClient.BaseAddress = new Uri(_baseUrl);
 
             if (!_httpClient.DefaultRequestHeaders.Contains("Authorization"))
+            {
                 _httpClient.DefaultRequestHeaders.Add("Authorization", token);
+            }
 
             GlobalCancelToken = cancellationToken;
         }
@@ -253,6 +259,31 @@ namespace MAX.Bot
                 null,
                 cancellationToken);
         }
+
+        public async Task<T> CreateMediaAttachmentAsync<T>(byte[] file, string fileName, CancellationToken cancellationToken = default) where T : AttachmentPayload, IMediaPayload
+        {
+            var uploadData = await SendRequestAsync<GetUploadUrlResponse>(
+                HttpMethod.Post,
+                $"/uploads?type={(Activator.CreateInstance(typeof(T)) as AttachmentPayload).Type}",
+                cancellationToken);
+
+            using (var formData = new MultipartFormDataContent())
+            {
+                using (var client = new HttpClient())
+                {
+                    var fileContent = new ByteArrayContent(file);
+                    fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("multipart/form-data");
+                    formData.Add(fileContent, "data", fileName);
+
+                    var fileUploadResponse = await client.PostAsync(uploadData.UploadUrl, formData, cancellationToken);
+                    fileUploadResponse.EnsureSuccessStatusCode();
+                    var json = await fileUploadResponse.Content.ReadAsStringAsync();
+                    var photos = JsonConvert.DeserializeObject<MediaUploadResponse<T>>(json);
+                    return photos.Photos.First().Value;
+                }
+            }
+        }
+
 
         public async Task PollUpdatesWithCallback(
             Func<Update, IMaxBotClient, Task> callback,

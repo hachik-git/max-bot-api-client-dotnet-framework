@@ -8,5 +8,5 @@ MAX.Bot.NetFramework/bin/*
 MAX.Bot.NetFramework/packages/*
 MAX.Bot.NetFramework/obj/
 MAX.Bot.NetFramework/.vs/*
-MAX.Bot.NetFramework/MAX.Bot.NetFramework.nuspec
-MAX.Bot.NetFramework/MAX.Bot.NetFramework.1.0.0.nupkg
+*.nuspec
+*.nupkg

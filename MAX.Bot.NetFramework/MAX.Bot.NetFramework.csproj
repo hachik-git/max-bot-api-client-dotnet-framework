@@ -63,21 +63,28 @@
       <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=10.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.10.0.5\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
-    <Reference Include="System.IO.Pipelines, Version=10.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Pipelines.10.0.5\lib\net462\System.IO.Pipelines.dll</HintPath>
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
     </Reference>
-    <Reference Include="System.Text.Json, Version=10.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Text.Json.10.0.5\lib\net462\System.Text.Json.dll</HintPath>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.6.3\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.ValueTuple, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.6.2\lib\net462\System.ValueTuple.dll</HintPath>
+      <HintPath>..\packages\System.ValueTuple.4.6.1\lib\net462\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="Microsoft.CSharp" />
@@ -115,6 +122,7 @@
     <Compile Include="Interfaces\Models\Request\Message\Attachment\Payloads\StickerPayload.cs" />
     <Compile Include="Interfaces\Models\Request\Message\Attachment\Payloads\VideoPayload.cs" />
     <Compile Include="Interfaces\Models\Request\Message\Attachment\StickerAttachment.cs" />
+    <Compile Include="Interfaces\Models\Request\Message\Attachment\UploadRequest.cs" />
     <Compile Include="Interfaces\Models\Request\Message\Attachment\VideoAttachment.cs" />
     <Compile Include="Interfaces\Models\Request\Message\Link\MessageLinkType.cs" />
     <Compile Include="Interfaces\Models\Request\Message\Link\NewMessageLink.cs" />
@@ -124,7 +132,9 @@
     <Compile Include="Interfaces\Models\Response\GetChatsResponse.cs" />
     <Compile Include="Interfaces\Models\Response\GetMessagesResponse.cs" />
     <Compile Include="Interfaces\Models\Response\GetUpdatesResponse.cs" />
+    <Compile Include="Interfaces\Models\Response\MediaUploadResponse.cs" />
     <Compile Include="Interfaces\Models\Response\SendMessageResponse.cs" />
+    <Compile Include="Interfaces\Models\Response\GetUploadUrlResponse.cs" />
     <Compile Include="Interfaces\Models\Update.cs" />
     <Compile Include="Interfaces\Models\User.cs" />
     <Compile Include="MaxBotClient.cs" />
