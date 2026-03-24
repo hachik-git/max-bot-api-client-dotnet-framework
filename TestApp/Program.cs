@@ -1,8 +1,10 @@
 using MAX.Bot.Extensions;
 using MAX.Bot.Interfaces;
+using MAX.Bot.Interfaces.Models;
 using MAX.Bot.Interfaces.Models.Request;
 using MAX.Bot.Interfaces.Models.Request.Message;
 using MAX.Bot.Interfaces.Models.Request.Message.Attachment;
+using MAX.Bot.Interfaces.Models.Request.Message.Attachment.Payloads;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -43,10 +45,14 @@ internal class Program
         {
             //ChatId = C_TEST_CHAT_ID,
             UserId = C_TEST_USER_ID,
-            Text = "Отправка сообщения с клавиатурой и изображением",
+            Text = @"Привет **всем**, с *форматированием* и [ссылкой на max](https://dev.max.ru/) ~~из консоли~~ ++теперь из ерп++ от [Сергей Хачатуров](max://user/24495814)",
             Format = MessageFormat.Markdown,
             Attachments = new List<Attachment>
             {
+                new ImageAttachment
+                {
+                    Payload = maxApiClient.CreateMediaAttachmentAsync<ImagePayload>(File.ReadAllBytes(C_TEST_MEDIA_FILE_NAME), Path.GetFileName(C_TEST_MEDIA_FILE_NAME)).GetAwaiter().GetResult()
+                },
                 new InlineKeyboardAttachment
                 {
                     Payload = new InlineKeyboardPayload()
@@ -87,10 +93,6 @@ internal class Program
                         }
                     }
                 },
-                new ImageAttachment
-                {
-                    Payload = maxApiClient.CreateMediaAttachmentAsync<ImagePayload>(File.ReadAllBytes(C_TEST_MEDIA_FILE_NAME), Path.GetFileName(C_TEST_MEDIA_FILE_NAME)).GetAwaiter().GetResult()
-                }
             }
         });
 
@@ -168,7 +170,6 @@ internal class Program
             Timeout = 2,
         });
         Console.WriteLine($"Маркер: {responseUpdates?.Marker}, Количество обновлений: {responseUpdates?.Updates.Count}");
-
 
         //var _ = maxApiClient.PollUpdatesWithCallback(
         //    async (update, client) =>

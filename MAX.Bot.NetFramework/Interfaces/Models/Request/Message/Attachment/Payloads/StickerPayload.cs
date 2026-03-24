@@ -1,13 +1,15 @@
-using MAX.Bot.Interfaces.Models.Request.Message.Attachment;
 using Newtonsoft.Json;
 
-public sealed class StickerPayload : AttachmentPayload
+namespace MAX.Bot.Interfaces.Models.Request.Message.Attachment.Payloads
 {
-    public override string Type => "sticker";
+    public sealed class StickerPayload : AttachmentPayload
+    {
+        public override string Type => "sticker";
 
-    /// <summary>
-    /// Код стикера
-    /// </summary>
-    [JsonProperty("code")]
-    public string Code { get; set; }
+        /// <summary>
+        /// Код стикера
+        /// </summary>
+        [JsonProperty("code")]
+        public string Code { get; set; }
+    }
 }

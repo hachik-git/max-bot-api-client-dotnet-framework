@@ -2,7 +2,6 @@ using Newtonsoft.Json;
 
 namespace MAX.Bot.Interfaces.Models
 {
-
     /// <summary>
     /// Модель изображения
     /// </summary>

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 namespace MAX.Bot.Interfaces.Models.Request.Message
 {
-
     /// <summary>
     /// Модель запроса на отправку сообщения
     /// </summary>

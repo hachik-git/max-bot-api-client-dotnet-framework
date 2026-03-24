@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace MAX.Bot.Interfaces
 {
-
     /// <summary>
     /// Интерфейс клиента для работы с API MAX Bot
     /// </summary>

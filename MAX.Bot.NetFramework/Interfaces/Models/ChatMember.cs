@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace MAX.Bot.Interfaces.Models
 {
-
     /// <summary>
     /// Модель участника чата
     /// </summary>

@@ -2,7 +2,6 @@ using Newtonsoft.Json;
 
 namespace MAX.Bot.Interfaces.Models.Request.Message.Link
 {
-
     public class NewMessageLink
     {
         /// <summary>

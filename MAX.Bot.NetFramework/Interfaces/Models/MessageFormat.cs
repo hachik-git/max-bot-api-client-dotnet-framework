@@ -1,19 +1,22 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-/// <summary>
-/// Формат сообщения
-/// </summary>
-[JsonConverter(typeof(StringEnumConverter))]
-public enum MessageFormat
+namespace MAX.Bot.Interfaces.Models
 {
     /// <summary>
-    /// Markdown разметка
+    /// Формат сообщения
     /// </summary>
-    Markdown,
+    [JsonConverter(typeof(StringEnumConverter))]
+    public enum MessageFormat
+    {
+        /// <summary>
+        /// Markdown разметка
+        /// </summary>
+        Markdown,
 
-    /// <summary>
-    /// HTML разметка
-    /// </summary>
-    Html
+        /// <summary>
+        /// HTML разметка
+        /// </summary>
+        Html
+    }
 }

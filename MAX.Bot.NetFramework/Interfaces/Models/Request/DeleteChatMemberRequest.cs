@@ -2,7 +2,6 @@ using Newtonsoft.Json;
 
 namespace MAX.Bot.Interfaces.Models.Request
 {
-
     /// <summary>
     /// Модель запроса на удаление пользователя из чата
     /// </summary>

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace MAX.Bot.Interfaces.Models.Response
 {
-
     /// <summary>
     /// Модель ответа от АПИ на получение обновлений
     /// </summary>

@@ -2,7 +2,6 @@ using Newtonsoft.Json;
 
 namespace MAX.Bot.Interfaces.Models.Response
 {
-
     /// <summary>
     /// Модель ответа от АПИ на получение участникова чата
     /// </summary>
